@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("iKBenPeanut")]
-[assembly: AssemblyDescription("Habbo Client Loader")]
+[assembly: AssemblyDescription("Habbo Accout Client/Loader")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AgedPeanuts")]
-[assembly: AssemblyProduct("Habbo Client Loader")]
+[assembly: AssemblyProduct("Habbo Accout Client/Loader")]
 [assembly: AssemblyCopyright("The Old Nut Man")]
 [assembly: AssemblyTrademark("Copyright © The Old Nut Man 2014")]
 [assembly: AssemblyCulture("")]
