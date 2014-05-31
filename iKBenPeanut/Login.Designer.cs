@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.HotelTxt = new System.Windows.Forms.ComboBox();
             this.LoginBtn = new System.Windows.Forms.Button();
@@ -35,6 +36,7 @@
             this.PasswordTxt = new System.Windows.Forms.TextBox();
             this.HEGroup = new System.Windows.Forms.GroupBox();
             this.EmailTxt = new System.Windows.Forms.TextBox();
+            this.LoginAnimation = new System.Windows.Forms.Timer(this.components);
             this.HPGroup.SuspendLayout();
             this.HEGroup.SuspendLayout();
             this.SuspendLayout();
@@ -114,6 +116,11 @@
             this.EmailTxt.TabIndex = 2;
             this.EmailTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // LoginAnimation
+            // 
+            this.LoginAnimation.Interval = 200;
+            this.LoginAnimation.Tick += new System.EventHandler(this.LoginAnimation_Tick);
+            // 
             // Login
             // 
             this.AcceptButton = this.LoginBtn;
@@ -149,6 +156,7 @@
         private System.Windows.Forms.TextBox PasswordTxt;
         private System.Windows.Forms.GroupBox HEGroup;
         private System.Windows.Forms.TextBox EmailTxt;
+        private System.Windows.Forms.Timer LoginAnimation;
 
     }
 }

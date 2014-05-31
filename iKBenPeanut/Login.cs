@@ -1,6 +1,5 @@
 ﻿using System;
 using Sulakore;
-using System.Threading;
 using System.Windows.Forms;
 using iKBenPeanut.Properties;
 
@@ -17,20 +16,10 @@ namespace iKBenPeanut
             LoginCB = OnLoginCallback;
         }
 
-        private void LoginBtn_Click(object sender, EventArgs e)
-        {
-            HSession HS = new HSession(EmailTxt.Text, PasswordTxt.Text, HotelTxt.Text.ToHotel());
-            HS.BeginLogin(LoginCB, HS);
-
-            LoginBtn.Text = "Logging In...";
-            foreach (Control C in Controls)
-                C.Enabled = false;
-            Cursor = Cursors.WaitCursor;
-        }
-
         private AsyncCallback LoginCB;
         public void OnLoginCallback(IAsyncResult iAr)
         {
+            LoginAnimation.Stop();
             HSession HS = (HSession)iAr.AsyncState;
             if (HS.EndLogin(iAr))
             {
@@ -56,6 +45,24 @@ namespace iKBenPeanut
                     LoginBtn.Text = "Login/Connect";
                 }));
             }
+        }
+        private void LoginBtn_Click(object sender, EventArgs e)
+        {
+            HSession HS = new HSession(EmailTxt.Text, PasswordTxt.Text, HotelTxt.Text.ToHotel());
+            HS.BeginLogin(LoginCB, HS);
+
+            Cursor = Cursors.WaitCursor;
+            LoginAnimation.Start();
+            foreach (Control C in Controls)
+                C.Enabled = false;
+        }
+
+        private int FrameIndex = 0;
+        private string[] Frames = new string[3] { ".", "..", "..." };
+        private void LoginAnimation_Tick(object sender, EventArgs e)
+        {
+            LoginBtn.Text = "Logging In" + Frames[FrameIndex];
+            FrameIndex += FrameIndex == 2 ? -2 : 1;
         }
 
         private void Login_FormClosed(object sender, FormClosedEventArgs e)
